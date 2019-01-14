@@ -1,0 +1,12 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.f">
+	<App>
+		<f:FlexibleColumnLayout 
+			id="idAppControl"
+			layout="{app>/layout}"
+		/>
+	</App>
+</mvc:View>

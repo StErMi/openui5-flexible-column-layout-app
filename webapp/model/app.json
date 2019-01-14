@@ -1,0 +1,14 @@
+{
+	"busy": true,
+	"delay": 0,
+	"layout": "OneColumn",
+	"previousLayout": "",
+	"actionButtonsInfo": {
+		"midColumn": {
+			"fullScreen": false
+		},
+		"endColumn": {
+			"fullScreen": false
+		}
+	}
+}

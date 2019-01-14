@@ -1,0 +1,155 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"id": "com.techedge.training.FlexibleColumnLayoutApp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"GWSAMPLE_BASIC": {
+				"uri": "/ES5/sap/opu/odata/iwbep/GWSAMPLE_BASIC/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+
+		]
+	},
+
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.techedge.training.FlexibleColumnLayoutApp.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.1",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {}
+			}
+		},
+		"config": {
+			"fullWidth": true
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.techedge.training.FlexibleColumnLayoutApp.i18n.i18n"
+				}
+			},
+			"": {
+				"uri": "/ES5/sap/opu/odata/iwbep/GWSAMPLE_BASIC/",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "GWSAMPLE_BASIC",
+				"preload": true
+			},
+			"filters": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/filters.json",
+				"preload": false
+			},
+			"data": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/data.json",
+				"preload": false
+			},
+			"app": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"uri": "model/app.json",
+				"preload": false
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "com.techedge.training.FlexibleColumnLayoutApp.view",
+				"controlId": "idAppControl",
+				"transition": "slide",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "TargetBusinessPartnerList",
+				"pattern": "",
+				"layout": "OneColumn",
+				"target": ["TargeteBusinessPartnerList"]
+			}, {
+				"name": "TargetBusinessPartnerDetail",
+				"pattern": "partner/:BusinessPartnerID:/",
+				"layout": "TwoColumnsMidExpanded",
+				"target": ["TargeteBusinessPartnerList", "TargetBusinessPartnerDetail"]
+			}, {
+				"name": "TargetBusinessPartnerSalesOrderDetail",
+				"pattern": "partner/:BusinessPartnerID:/sale/:SalesOrderID:",
+				"layout": "ThreeColumnsEndExpanded",
+				"target": ["TargeteBusinessPartnerList", "TargetBusinessPartnerDetail", "TargetBusinessPartnerSalesOrderDetail"]
+			}],
+			"targets": {
+				"TargeteBusinessPartnerList": {
+					"controlAggregation": "beginColumnPages",
+					"viewName": "BusinessPartnerList"
+				}, 
+				"TargetBusinessPartnerDetail": {
+					"controlAggregation": "midColumnPages",
+					"viewName": "BusinessPartnerDetail"
+				}, 
+				"TargetBusinessPartnerSalesOrderDetail": {
+					"controlAggregation": "endColumnPages",
+					"viewName": "BusinessPartnerSalesOrderDetail"
+				}
+			}
+		}
+	}
+}
