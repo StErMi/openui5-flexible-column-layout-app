@@ -66,10 +66,11 @@ sap.ui.define([
 		 */
 		onCloseDetailPress: function () {
 			var oModel = this.getView().getModel("app");
-			oModel.setProperty("/actionButtonsInfo/midColumn/fullScreen", false);
+			oModel.setProperty("/actionButtonsInfo/endColumn/fullScreen", false);
 			// No item should be selected on master after detail page is closed
 			//this.getOwnerComponent().oListSelector.clearMasterListSelection();
-			this.getOwnerComponent().getRouter().navTo("TargeteBusinessPartnerList", {}, true);
+			
+			this.onNavButtonPress();
 		},
 		
 		/**
@@ -77,12 +78,12 @@ sap.ui.define([
 		 */
 		toggleFullScreen: function () {
 			var oModel = this.getView().getModel("app");
-			var bFullScreen = oModel.getProperty("/actionButtonsInfo/midColumn/fullScreen");
-			oModel.setProperty("/actionButtonsInfo/midColumn/fullScreen", !bFullScreen);
+			var bFullScreen = oModel.getProperty("/actionButtonsInfo/endColumn/fullScreen");
+			oModel.setProperty("/actionButtonsInfo/endColumn/fullScreen", !bFullScreen);
 			if (!bFullScreen) {
 				// store current layout and go full screen
 				oModel.setProperty("/previousLayout", oModel.getProperty("/layout"));
-				oModel.setProperty("/layout", "MidColumnFullScreen");
+				oModel.setProperty("/layout", "EndColumnFullScreen");
 			} else {
 				// reset to previous layout
 				oModel.setProperty("/layout",  oModel.getProperty("/previousLayout"));
